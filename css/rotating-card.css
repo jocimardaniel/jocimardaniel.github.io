@@ -1,5 +1,5 @@
 body {
-	margin-top: 60px;
+    margin-top: 20px;
 	font-size: 14px;
 	font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
 	background-color: #E5E9ED;
@@ -11,11 +11,11 @@ body {
 }
 /* entire container, keeps perspective */
 .card-container {
-	  -webkit-perspective: 800px;
-   -moz-perspective: 800px;
-     -o-perspective: 800px;
-        perspective: 800px;
-        margin-bottom: 30px;
+	  -webkit-perspective: 600px;
+   -moz-perspective: 600px;
+     -o-perspective: 600px;
+        perspective: 600px;
+        margin-bottom: 0px;
 }
 /* flip the pane when hovered */
 .card-container:not(.manual-flip):hover .card,
