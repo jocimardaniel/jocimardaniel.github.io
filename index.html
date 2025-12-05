@@ -1,51 +1,379 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR" class="scroll-smooth">
 <head>
-    <title>Jocimar Daniel</title>
-	<meta charset="utf-8" />
-	<!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />-->
-	<meta name="description" content="Página de perfil de Jocimar Daniel, Analista de Testes de Software. Conheça mais sobre suas habilidades e redes sociais.">
-	<meta name="keywords" content="Jocimar Daniel, Analista de Testes, Software, Perfil, Portfólio, HTML, CSS, Bootstrap">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/rotating-card.css" rel="stylesheet" />
-    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="icon" type="image/png" href="/images/favicon_created_by_logaster.ico" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Jocimar Daniel - Desenvolvedor e QA Engineer. Conheça meus projetos e habilidades.">
+    <title>Jocimar Daniel | Portfólio</title>
+    
+    <!-- Tailwind CSS (via CDN para praticidade) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            500: '#3b82f6', // Azul principal
+                            600: '#2563eb',
+                        },
+                        dark: {
+                            900: '#0f172a', // Fundo principal
+                            800: '#1e293b', // Fundo secundário (cards)
+                            700: '#334155', // Bordas
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'bounce-slow': 'bounce 3s infinite',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Efeitos personalizados de scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+        
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
-<body>
-<main class="container">
-    <div class="col-sm-3"></div>
-        <div class="col-sm-6">
-             <article class="card-container manual-flip">
-                <div class="card">
-                    <div class="front">
-                        <div class="cover">
-                            <img src="images/rotating_card_thumb2.png"/>
+<body class="bg-dark-900 text-slate-300 font-sans antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 glass-nav border-b border-dark-700 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Nome -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold text-white tracking-tight hover:text-brand-500 transition-colors">
+                        &lt;JD /&gt;
+                    </a>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-sm font-medium hover:text-brand-500 transition-colors">Início</a>
+                    <a href="#about" class="text-sm font-medium hover:text-brand-500 transition-colors">Sobre</a>
+                    <a href="#skills" class="text-sm font-medium hover:text-brand-500 transition-colors">Skills</a>
+                    <a href="#contact" class="px-4 py-2 text-sm font-medium bg-brand-600 text-white rounded-lg hover:bg-brand-500 transition-all transform hover:-translate-y-0.5">Contato</a>
+                </div>
+
+                <!-- Botão Menu Mobile -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile (Oculto por padrão) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-800 border-t border-dark-700">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-dark-700 hover:text-white">Início</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-dark-700 hover:text-white">Sobre</a>
+                <a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-dark-700 hover:text-white">Skills</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-brand-500 font-bold">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-brand-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+        <div class="absolute top-20 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0 animate-fade-in-up">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
+                    Olá, eu sou <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-purple-500">Jocimar Daniel</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-400 mb-8 max-w-lg mx-auto md:mx-0">
+                    QA Senior & Caçador de bugs focado em criar experiências digitais impecáveis e automação de testes robusta.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="https://github.com/jocimardaniel" target="_blank" class="px-8 py-3 bg-dark-800 text-white font-semibold rounded-lg hover:bg-dark-700 border border-dark-700 transition-all flex items-center justify-center gap-2">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Imagem de Perfil / Ilustração -->
+            <div class="w-full md:w-1/2 flex justify-center animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-500 to-purple-500 rounded-full blur-lg opacity-50"></div>
+                    <!-- Substitua o src pela sua foto real do GitHub -->
+                    <img src="https://github.com/jocimardaniel.png" alt="Jocimar Daniel" class="relative w-full h-full object-cover rounded-full border-4 border-dark-800 shadow-2xl">
+                    
+                    <!-- Floating Cards Decorativos -->
+                    <div class="absolute -bottom-4 -right-4 bg-dark-800 p-4 rounded-xl border border-dark-700 shadow-xl flex items-center gap-3 animate-bounce-slow">
+                        <div class="p-2 bg-green-500/10 rounded-lg">
+                            <i class="fas fa-check-circle text-green-500 text-xl"></i>
                         </div>
-                        <div class="user">
-                            <img class="img-circle" src="images/jocimar2.jpg" alt="Foto de perfil de Jocimar Daniel"/>
+                        <div>
+                            <p class="text-xs text-slate-400">Qualidade</p>
+                            <p class="text-sm font-bold text-white">Garantida</p>
                         </div>
-                        <div class="content">
-                            <div class="main">
-                                <h3 class="name">Jocimar Daniel</h3>
-                                <p class="profession">Analista de Testes de Software</p>
-                                <p class="text-center">Flamenguista, formado em Ciência da Computação e jogador de Poker nas horas vagas.</p>
-                                <p class="location"><i class="fa fa-map-marker" aria-hidden="true"></i> Campinas - São Paulo - BR</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-slate-500 hover:text-white transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="about" class="py-20 bg-dark-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Sobre Mim</h2>
+                <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-semibold text-white">Apaixonado por Tecnologia e Qualidade</h3>
+                    <p class="text-slate-400 leading-relaxed">
+                        Sou um profissional dedicado à tecnologia, com foco em garantir que o software não apenas funcione, mas encante o usuário. Minha jornada envolve desenvolvimento de soluções web e estratégias de QA (Quality Assurance) para automação e performance.
+                    </p>
+                    <p class="text-slate-400 leading-relaxed">
+                        Acredito que a combinação de um bom código com testes rigorosos é a chave para produtos digitais de sucesso. Estou sempre aprendendo novas ferramentas e frameworks para me manter atualizado.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-code text-brand-500"></i>
+                            <span class="text-sm font-medium">Clean Code</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-bug text-brand-500"></i>
+                            <span class="text-sm font-medium">Bug Hunter</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-robot text-brand-500"></i>
+                            <span class="text-sm font-medium">Automação</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fas fa-users text-brand-500"></i>
+                            <span class="text-sm font-medium">Trabalho em Equipe</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-dark-900 p-8 rounded-2xl border border-dark-700 shadow-xl">
+                    <h4 class="text-xl font-bold text-white mb-6">Minha Experiência</h4>
+                    
+                    <div class="space-y-0">
+                        <!-- Item 1: TCS -->
+                        <div class="relative pl-8 border-l-2 border-brand-500/30 pb-8">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-500"></div>
+                            <h5 class="text-lg font-semibold text-white">Analista de Teste de Software</h5>
+                            <div class="text-sm text-brand-400 mb-2">
+                                <span class="font-bold">Tata Consultancy Services</span> • Mar 2018 - Momento
                             </div>
-                            <div class="footer">
-                                <div class="social-links text-center">
-                                    <a href="https://www.facebook.com/jocimardaniel" target ='_blank' class="facebook" aria-label="Facebook de Jocimar Daniel"><i class="fa fa-facebook fa-fw"></i></a>
-                                    <a href="https://www.instagram.com/jocimardaniel/" target ='_blank' class="instagram" aria-label="Instagram de Jocimar Daniel"><i class="fa fa-instagram fa-fw"></i></a>
-                                    <a href="https://twitter.com/jocimardaniel" target ='_blank' class="twitter" aria-label="Twitter de Jocimar Daniel"><i class="fa fa-twitter fa-fw"></i></a>
-                                    <a href="https://www.linkedin.com/in/jocimardaniel/" target ='_blank' class="linkedin" aria-label="LinkedIn de Jocimar Daniel"><i class="fa fa-linkedin fa-fw"></i></a>
-                                    <a href="https://github.com/jocimardaniel" target ='_blank' class="github" aria-label="GitHub de Jocimar Daniel"><i class="fa fa-github fa-fw"></i></a>
-                                </div>
-                            </div>
+                            <p class="text-sm text-slate-400 mb-3 leading-relaxed">
+                                Consultor especializado em QA alocado na Thomson Reuters. Foco na confiabilidade de sistemas críticos através de testes manuais, automatizados e validação de dados.
+                            </p>
+                            <!-- Lista de responsabilidades compacta -->
+                            <ul class="space-y-2">
+                                <li class="text-xs text-slate-400 flex items-start gap-2">
+                                    <i class="fas fa-check text-brand-500 mt-0.5"></i>
+                                    <span><strong>Automação:</strong> Scripts E2E com Cypress, reduzindo tempo de regressão.</span>
+                                </li>
+                                <li class="text-xs text-slate-400 flex items-start gap-2">
+                                    <i class="fas fa-database text-brand-500 mt-0.5"></i>
+                                    <span><strong>Backend:</strong> Validação de integridade de dados com PL/SQL (Oracle).</span>
+                                </li>
+                                <li class="text-xs text-slate-400 flex items-start gap-2">
+                                    <i class="fas fa-infinity text-brand-500 mt-0.5"></i>
+                                    <span><strong>CI/CD & Ágil:</strong> Integração via Jenkins/GitHub Actions e cerimônias Scrum.</span>
+                                </li>
+                            </ul>
                         </div>
-                    </div> <!-- end front panel -->
-                </div> <!-- end card -->
-            </article> <!-- end article card-container -->
-        </div> <!-- end col sm 3 -->
-</main>
+
+                        <!-- Item 2: Thomson Reuters -->
+                        <div class="relative pl-8 border-l-2 border-brand-500/30">
+                            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-700 border-2 border-brand-500"></div>
+                            <h5 class="text-lg font-semibold text-white">Consultor</h5>
+                            <div class="text-sm text-brand-400 mb-2">
+                                <span class="font-bold">Thomson Reuters</span> • Out 2015 - Momento
+                            </div>
+                            <p class="text-sm text-slate-400 mt-1">
+                                Atuação como Analista de Testes em projetos estratégicos da companhia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 bg-dark-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Minhas Skills</h2>
+                <p class="text-slate-400">Ferramentas e tecnologias que domino</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Skill Card 1 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fab fa-java text-4xl text-slate-400 group-hover:text-red-500 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">Java</h3>
+                </div>
+                <!-- Skill Card 2 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fab fa-js text-4xl text-slate-400 group-hover:text-yellow-400 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">JavaScript</h3>
+                </div>
+                <!-- Skill Card 3 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fas fa-check-double text-4xl text-slate-400 group-hover:text-green-500 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">Selenium</h3>
+                </div>
+                <!-- Skill Card 4 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fas fa-vial text-4xl text-slate-400 group-hover:text-green-400 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">Cypress</h3>
+                </div>
+                <!-- Skill Card 5 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fab fa-html5 text-4xl text-slate-400 group-hover:text-orange-500 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">HTML5/CSS3</h3>
+                </div>
+                <!-- Skill Card 6 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fab fa-git-alt text-4xl text-slate-400 group-hover:text-red-400 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">Git</h3>
+                </div>
+                <!-- Skill Card 7 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fas fa-database text-4xl text-slate-400 group-hover:text-blue-400 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">SQL</h3>
+                </div>
+                <!-- Skill Card 8 -->
+                <div class="p-6 bg-dark-800 rounded-xl border border-dark-700 hover:border-brand-500 transition-colors group text-center">
+                    <i class="fas fa-infinity text-4xl text-slate-400 group-hover:text-blue-600 mb-4 transition-colors"></i>
+                    <h3 class="font-bold text-white">CI/CD</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact -->
+    <section id="contact" class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-600/10"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Vamos trabalhar juntos?</h2>
+            <p class="text-lg text-slate-300 mb-10 max-w-2xl mx-auto">
+                Estou sempre aberto a novas oportunidades e desafios interessantes. Se você tem um projeto em mente ou apenas quer dar um "olá", entre em contato!
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="mailto:jocimardaniel@gmail.com" class="px-8 py-4 bg-white text-dark-900 font-bold rounded-lg hover:bg-slate-200 transition-colors flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope"></i> Enviar E-mail
+                </a>
+                <a href="https://linkedin.com/in/jocimardaniel" target="_blank" class="px-8 py-4 bg-brand-600 text-white font-bold rounded-lg hover:bg-brand-500 transition-colors flex items-center justify-center gap-2">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark-900 border-t border-dark-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0 text-center md:text-left">
+                <span class="text-2xl font-bold text-white tracking-tight">&lt;JD /&gt;</span>
+                <p class="text-slate-500 text-sm mt-2">© 2024 Jocimar Daniel. Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="flex space-x-6">
+                <a href="https://github.com/jocimardaniel" target="_blank" class="text-slate-400 hover:text-white transition-colors text-xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://linkedin.com/in/jocimardaniel" target="_blank" class="text-slate-400 hover:text-white transition-colors text-xl">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:jocimardaniel@gmail.com" class="text-slate-400 hover:text-white transition-colors text-xl">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Menu Mobile Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Efeito de Navbar ao rolar
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Smooth Scroll para links internos (com suporte legacy)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden'); // Fecha menu mobile ao clicar
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
